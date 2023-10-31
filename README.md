@@ -33,10 +33,3 @@ To compile and run the program, you can use the following commands in your termi
 ```shell
 g++ -std=c++11 -o dining_philosophers dining_philosophers.cpp
 ./dining_philosophers
-
-
-
-
-
-
- 
