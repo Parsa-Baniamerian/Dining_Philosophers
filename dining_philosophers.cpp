@@ -9,8 +9,8 @@ std::mutex print_mutex; // Mutex for synchronized printing
 void philosopher(int id) {
     int left_fork = id;
     int right_fork = (id + 1) % num_philosophers;
-
-    while (true) {
+    bool done_eating = false;
+    while (!done_eating) {
         // Think
         {
             std::lock_guard<std::mutex> lock(print_mutex);
@@ -47,6 +47,7 @@ void philosopher(int id) {
             {
                 std::lock_guard<std::mutex> lock(print_mutex);
                 std::cout << "Philosopher " << id << " is done eating and returning to thinking." << std::endl;
+                done_eating = true;
             }
         } else {
             // Release left fork if the right fork is not available
